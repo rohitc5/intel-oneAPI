@@ -1,8 +1,9 @@
-BASE_DIR = 'static'
+BASE_DIR = 'webapp/static'
 DATASET_COURSE_BASE_DIR = "./dataset/courses/"
 
 API_CONFIG = {
-    "server_host": "leap-api",
+    # "server_host": "leap-api",
+    "server_host": "localhost",
     "server_port": "8500",
     "ask_doubt":  {
         "max_answer_length": 30,

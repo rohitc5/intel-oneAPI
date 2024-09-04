@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import streamlit as st
 import speech_recognition as sr
 from datetime import datetime
@@ -93,6 +94,13 @@ def load_course_material(base_dir):
                                     course_material[topic_name][_type][week_name][subtopic_name]["doc_file"] = file_path
                                 elif extension == "vtt":
                                     course_material[topic_name][_type][week_name][subtopic_name]["subtitle_file"] = file_path
+                            else:
+                                dir_path = Path(file_path)
+                                if dir_path.stem == 'short_clips':
+                                    video_clip_paths = []
+                                    for video_clip_path in dir_path.glob("*.mp4"):
+                                        video_clip_paths.append(str(video_clip_path))
+                                    course_material[topic_name][_type][week_name][subtopic_name]["video_clips"] = video_clip_paths
 
             elif _type == "Viva-Material":
                 course_material[topic_name][_type] = {"context_files": []}
@@ -103,7 +111,7 @@ def load_course_material(base_dir):
                         if extension == "txt":
                             course_material[topic_name][_type]["context_files"].append(
                                 file_path
-                            )
+                            )                
     
     return course_material
 

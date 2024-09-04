@@ -43,6 +43,10 @@ def write_ui():
         st.image(img, use_column_width=True)
         if st.button(label="Start Demo", use_container_width=True):
             st.session_state["demo_started"] = True
+    elif "revision_mode" in st.session_state:
+        display_course_banner(st.session_state["course_selected"])
+        st.markdown("---")
+        display_video_clips(st.session_state["course_selected"])
     elif "viva_mode" in st.session_state:
         display_course_banner(st.session_state["course_selected"])
         st.markdown("---")
